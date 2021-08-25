@@ -1,22 +1,26 @@
 import React from 'react';
+// import Trailer from './Trailer';
 
 const Grid = ({ config, data }) => (
   <table>
     <thead>
-    <tr>
-      <th>Col 1</th>
-      <th>Col 2</th>
-    </tr>
+      <tr>
+      {
+        config.map((item, index) => <th key={index}>{item.title}</th>)
+      }
+      </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>Data 1</td>
-      <td>Data 2</td>
-    </tr>
-    <tr>
-      <td>Data 1</td>
-      <td>Data 2</td>
-    </tr>
+    {
+      data.map(row =>
+        <tr key={row.imdbID}>
+          <td>{row.imdbID}</td>
+          <td>{row.Title}</td>
+          <td>{row.imdbRating}</td>
+          <td>{config.filter(item => item.component).map(comp => <comp.component data={row.Trailer} />)}</td>
+        </tr>
+      )
+    }
     </tbody>
   </table>
 );
